@@ -1,31 +1,43 @@
 LearningToFly
 =============
 created: 2013-08-21
-Time-stamp: <Mon Oct 21 15:55:18 JST 2013>
+Time-stamp: <Mon Oct 21 16:07:58 JST 2013>
 ---
+
+delete branch
+===
+リモートへ空のブランチを投げる
+```
+% git branch -a
+* master
+  hoge
+  origin/hoge
+% git branch -d hoge
+% git push origin :hoge
+```
 
 cherry-pick
 ===
 masterのHEADから作られたfeature/based_on_masterと
 developのHEADから作られたfeature/based_on_develop
 ```
-git checkout master
-git checkout -b feature/based_on_master
-cat 'hogehoge' > new_feature
-git add new_feature
-git commit -m 'first commit for feature/based_on_master'
+% git checkout master
+% git checkout -b feature/based_on_master
+% cat 'hogehoge' > new_feature
+% git add new_feature
+% git commit -m 'first commit for feature/based_on_master'
 ```
 
 ```
-git checkout develop
-git checkout -b feature/based_on_develop
+% git checkout develop
+% git checkout -b feature/based_on_develop
 ```
 
 本当ならfeature/based_on_masterも、developから切りたかった。
 もとになるHEADが異なるため、コミットの歴史が汚くなる可能性がある。
 そこで、feature/based_on_masterのコミット分(1回分)をfeature/based_on_developへ取り込む
 
-`git cherry-pick 4099bcbf7efdec0506d249cb80c999945eb29ff8`
+`% git cherry-pick 4099bcbf7efdec0506d249cb80c999945eb29ff8`
 
 4099...は取り込みたい対象のコミットID。git logで確認可能。
 
